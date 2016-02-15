@@ -21,8 +21,6 @@ namespace RemoteTshockConsole
 
         static void Main(string[] args)
         {
-
-
             if (!File.Exists("config.json"))
                 MakeConfig();
             else
@@ -89,14 +87,13 @@ namespace RemoteTshockConsole
         static void MakeConfig()
         {
             config = new Config();
-            Console.Write("Server address: ");
-            config.ServerIp = Console.ReadLine();
+            config.ServerIp = GetInput("Server address");
             string port = GetInput("Port (press enter for 8787)");
             while (!int.TryParse(port, out config.Port) && port != string.Empty) ;
             if (config.Port == 0)
                 config.Port = 8787;
             config.Username = GetInput("Username");
-            config.Password = GetMaskedString("Password");
+            config.Password = GetMaskedInput("Password");
             config.Save();
             Console.Clear();
         }
@@ -108,7 +105,7 @@ namespace RemoteTshockConsole
         }
 
 
-        static string GetMaskedString(string message)
+        static string GetMaskedInput(string message)
         {
             Console.Write(message + ": ");
             int pos = Console.CursorLeft;
