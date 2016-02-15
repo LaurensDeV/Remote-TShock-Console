@@ -96,7 +96,6 @@ namespace RemoteTshockConsole
             if (config.Port == 0)
                 config.Port = 8787;
             config.Username = GetInput("Username");
-            //TODO: Replace password with *******
             config.Password = GetMaskedString("Password");
             config.Save();
             Console.Clear();
